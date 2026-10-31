@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romantic Love Letter | 10s Animation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <!-- Background Canvas for Hearts & Glow Particles -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Ambient glowing lights in background -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div class="ambient-glow glow-3"></div>
+
+    <!-- Main Scene Container -->
+    <main class="scene-container">
+        
+        <!-- Top Controls & Audio -->
+        <header class="top-bar">
+            <div class="badge">
+                <span class="pulse-dot"></span>
+                <span>10 Sekundli Maxsus Animatsiya</span>
+            </div>
+            <div class="audio-toggle" id="audio-toggle" title="Ovozni yoqish / o'chirish">
+                <svg id="sound-on-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+                <svg id="sound-off-icon" class="hidden" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <line x1="23" y1="9" x2="17" y2="15"></line>
+                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                </svg>
+                <span id="sound-text">Ovoz: Yoqilgan</span>
+            </div>
+        </header>
+
+        <!-- Envelope & Letter 3D Stage -->
+        <div class="envelope-stage" id="envelope-stage">
+            <div class="envelope-shadow"></div>
+            
+            <div class="envelope" id="envelope">
+                <!-- Back flap/pocket of the envelope -->
+                <div class="envelope-back"></div>
+
+                <!-- The Love Letter Card that slides up -->
+                <div class="letter-card" id="letter-card">
+                    <div class="letter-border">
+                        <div class="letter-stamp">
+                            <span class="stamp-heart">❤️</span>
+                        </div>
+                        <div class="letter-header">
+                            <span class="letter-subtitle">Eng go'zal insonimga</span>
+                            <div class="divider-line">
+                                <span class="line"></span>
+                                <span class="divider-heart">💖</span>
+                                <span class="line"></span>
+                            </div>
+                        </div>
+
+                        <div class="letter-body">
+                            <!-- Main glowing "I Love You" message -->
+                            <h1 class="love-message" id="love-message">
+                                <span class="word-i">I</span>
+                                <span class="word-love">Love</span>
+                                <span class="word-you">You</span>
+                                <span class="inline-heart">❤️</span>
+                            </h1>
+
+                            <p class="love-quote">
+                                "Har bir nafasimda va yurak urishimda faqat sensan..."
+                            </p>
+                        </div>
+
+                        <div class="letter-footer">
+                            <div class="mini-hearts-row">
+                                <span>💕</span>
+                                <span>🌸</span>
+                                <span>💗</span>
+                                <span>✨</span>
+                                <span>💖</span>
+                            </div>
+                            <span class="signature">Cheksiz muhabbat ila</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Envelope Front Folds (left, right, bottom) -->
+                <div class="envelope-pocket-left"></div>
+                <div class="envelope-pocket-right"></div>
+                <div class="envelope-pocket-bottom"></div>
+
+                <!-- Envelope Top Flap (opens up) -->
+                <div class="envelope-flap" id="envelope-flap">
+                    <div class="flap-triangle"></div>
+                </div>
+
+                <!-- Heart Seal on the Envelope Flap -->
+                <div class="heart-seal" id="heart-seal" title="Ochish uchun bosing">
+                    <div class="seal-glow"></div>
+                    <svg class="seal-heart-svg" viewBox="0 0 32 32">
+                        <defs>
+                            <linearGradient id="sealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#ff4b72" />
+                                <stop offset="50%" stop-color="#e60039" />
+                                <stop offset="100%" stop-color="#990022" />
+                            </linearGradient>
+                            <filter id="sealShadow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000" flood-opacity="0.45"/>
+                            </filter>
+                        </defs>
+                        <path d="M16,28.5 C16,28.5 3,20.5 3,11.5 C3,6.5 7,2.5 12,2.5 C14.5,2.5 15.5,3.8 16,4.5 C16.5,3.8 17.5,2.5 20,2.5 C25,2.5 29,6.5 29,11.5 C29,20.5 16,28.5 16,28.5 Z" 
+                              fill="url(#sealGrad)" filter="url(#sealShadow)"/>
+                        <!-- Heart specular highlight -->
+                        <path d="M7.5,7 C9,4.5 12,4 13.5,5.5 C12,5 9,6.5 8,9 Z" fill="rgba(255,255,255,0.7)"/>
+                    </svg>
+                    <span class="seal-sparkle seal-sp-1">✨</span>
+                    <span class="seal-sparkle seal-sp-2">✨</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Animated Laptop Cursor -->
+        <div class="laptop-cursor" id="laptop-cursor">
+            <svg class="cursor-svg" viewBox="0 0 28 28" width="30" height="30">
+                <defs>
+                    <filter id="cursorGlow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="rgba(0,0,0,0.6)"/>
+                    </filter>
+                </defs>
+                <!-- Sleek modern laptop pointer with crisp white/black stroke -->
+                <polygon points="3,3 3,23 9,18 14,26 18,24 13,16 20,16" 
+                         fill="#ffffff" stroke="#18181b" stroke-width="1.8" stroke-linejoin="round" filter="url(#cursorGlow)"/>
+            </svg>
+            <div class="cursor-click-wave" id="cursor-click-wave"></div>
+            <div class="cursor-sparkle-dot"></div>
+        </div>
+
+        <!-- Bottom Timeline & Status Bar -->
+        <footer class="timeline-container">
+            <div class="timeline-meta">
+                <span class="timeline-label" id="timeline-label">Tayyorlanmoqda...</span>
+                <span class="timeline-timer" id="timeline-timer">00:00 / 00:10</span>
+            </div>
+            
+            <div class="timeline-track">
+                <div class="timeline-fill" id="timeline-fill"></div>
+            </div>
+
+            <div class="timeline-actions">
+                <button class="replay-btn" id="replay-btn">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="1 4 1 10 7 10"></polyline>
+                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                    </svg>
+                    <span>Qayta ko'rish (Replay)</span>
+                </button>
+                <div class="interactive-hint">
+                    <span>💡 Maslahat: Ekranni bosib qo'shimcha yorqin yurakchalarni uchiring!</span>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script src="./script.js"></script>
+
+</body>
+</html>
